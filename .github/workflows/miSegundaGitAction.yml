@@ -1,0 +1,20 @@
+name: Ejemplo de GitHub Actions con expresiones
+
+on:
+  push:
+    branches:
+      - Rama-Desarrollador1
+
+jobs:
+  mi_trabajo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obtener el título de la pull request
+        id: obtener_titulo
+        run: echo "::set-output name=title::${{ github.event.pull_request.title }}"
+
+      - name: Configurar variable de ambiente con el título de la pull request
+        run: echo "MESSAGE=${{ steps.obtener_titulo.outputs.title }}" >> $GITHUB_ENV
+
+      - name: Mostrar el valor de la variable de ambiente
+        run: echo "El mensaje es: $MESSAGE"
