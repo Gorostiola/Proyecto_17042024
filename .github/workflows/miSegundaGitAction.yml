@@ -17,4 +17,8 @@ jobs:
         run: echo "MESSAGE=${{ steps.obtener_titulo.outputs.title }}" >> $GITHUB_ENV
 
       - name: Mostrar el valor de la variable de ambiente
-        run: echo "El mensaje es: $MESSAGE"
+        run: |
+          echo "El mensaje es: $MESSAGE"
+        env:
+          MESSAGE: ${{ steps.obtener_titulo.outputs.title }}
+
